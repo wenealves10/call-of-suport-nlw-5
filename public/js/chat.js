@@ -67,6 +67,9 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
 
     const rendered = Mustache.render(template_admin, {
       message_admin: message.text,
+      date: `${dayjs(
+        message.created_at
+      ).format("DD/MM/YYYY HH:mm:ss")}`,
     });
 
     document.getElementById("messages").innerHTML += rendered;
@@ -91,7 +94,10 @@ document
     const rendered = Mustache.render(template_client, {
       message: text.value,
       email: emailUser,
+      date: `${dayjs().format("DD/MM/YYYY HH:mm:ss")}`,
     });
 
+    text.value = "";
+    
     document.getElementById("messages").innerHTML += rendered;
   });
